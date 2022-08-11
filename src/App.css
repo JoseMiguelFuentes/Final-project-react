@@ -1,0 +1,27 @@
+#root {
+  max-width: 1280px;
+  margin: 0 0;
+  padding: 0;
+  text-align: center;
+  box-sizing: border-box;
+  list-style: none;
+}
+/* Cart */
+.cart-item{
+  border-bottom: gray solid 1px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+/* Nav */
+#cart-button{
+  background: transparent;
+  border: none;
+  font-weight: 700;
+}
+
+
+
+
+

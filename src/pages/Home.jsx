@@ -73,7 +73,7 @@ const Home = () => {
 
   return (
     
-        <div >
+        <>
           <div className='form'>
             <InputGroup className="home_input" onChange={ event => setFilterValue( event.target.value )}>
               <Form.Control
@@ -105,13 +105,13 @@ const Home = () => {
             
           
                   
-          <Container>      
+               
             
-            <Row xs={1} md={2} xl={3} className="g-4 product_card-box">
+            <div className="g-4 product_card-box">
             
               {
                 products.map( item => (
-                <Col onClick={ () => navigate(`/productDetail/${item.id}`)}
+                <article onClick={ () => navigate(`/productDetail/${item.id}`)}
                   key={item.id} className='product-card'>
                 
                     
@@ -132,14 +132,14 @@ const Home = () => {
                     ><img src={cart} alt="cart" /></div>
                 
               
-                </Col>
+                </article>
                 ))
               }
             
-            </Row>
+            </div>
           
-        </Container>
-        </div>
+        
+        </>
       
   );
 };

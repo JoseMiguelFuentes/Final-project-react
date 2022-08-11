@@ -23,6 +23,7 @@ import Auto from '../assets/images/auto.gif'
 
 import Accordion from 'react-bootstrap/Accordion';
 import { addCartThunk } from '../store/slices/cart.slice';
+import { setProductsThunk } from '../store/slices/products.slice';
 
 const ProductDetail = () => {
 
@@ -203,7 +204,7 @@ const ProductDetail = () => {
               <p>Price: <br />${item.price}</p>
               </div>
 
-              <div className='cart_box'><img src={cart} alt="" /></div>
+              <div className='cart_box' onClick={()=>sendToCart(item)}><img src={cart} alt="" /></div>
           
         
           </article>

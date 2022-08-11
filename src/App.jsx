@@ -1,9 +1,10 @@
 
 
-import 'bootswatch/dist/Sketchy/bootstrap.min.css';
+
 
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
+import 'bootswatch/dist/Sketchy/bootstrap.min.css';
 import './App.css'
 
 

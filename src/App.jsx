@@ -1,8 +1,12 @@
+
+
+import 'bootswatch/dist/Sketchy/bootstrap.min.css';
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 
-import 'bootswatch/dist/Sketchy/bootstrap.min.css';
+
 
 import ProtectedRoutes from './components/ProtectedRoutes'
 import { HashRouter, Routes, Route } from 'react-router-dom'

@@ -60,6 +60,9 @@ const NavBar = () => {
             <button variant="primary" onClick={handleShow} id='cart-button'>
               Cart
             </button>
+
+            <Nav.Link href="/#/">{ userName ? null : 'Sign Up'}</Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
       </Container>

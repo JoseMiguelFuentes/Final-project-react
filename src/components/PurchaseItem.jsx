@@ -7,7 +7,7 @@ import '../styles/purchases.css'
 const PurchaseItem = ({products, itemDate}) => {
 
   const options = { year: 'numeric', month: 'long', day: 'numeric' }
-  const date = new Date(itemDate).toLocaleDateString('es-co', options)
+  const date = new Date(itemDate).toLocaleDateString('en-us', options)
 
 
 
@@ -22,7 +22,7 @@ const PurchaseItem = ({products, itemDate}) => {
 
   return (
     <div >
-      <p>{date}</p>
+      <p><u>{ date }</u></p>
         {
           products.map( product => (
           <div key={product.id} className='purchase-item'>

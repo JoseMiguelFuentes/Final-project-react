@@ -90,8 +90,8 @@ const Purchases = () => {
     useEffect(()=>{
       dispatch( getPurchasesThunk( ) )
     },[])
-    console.log(purchases);
-    // console.log( purchases?.[0].cart?.purchases[0].title );
+    // console.log(purchases)
+    
 
 
     

@@ -37,12 +37,7 @@ const Login = () => {
         })
         
   }
-  // useEffect(()=>{
-  //   localStorage.setItem( "token", logData?.token)
-  //   localStorage.setItem( "userName", logData.user?.firstName)
-  //   const userName = logData.user?.firstName
-  //   console.log( userName )
-  // },[logData])
+  
   
 
 
@@ -72,6 +67,10 @@ const Login = () => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
+        <p id='create-user' style={{color: 'blue', marginTop: '5px', cursor: 'pointer'}}
+        
+        onClick={()=>Navigate('/createUser')}
+        >Don't have an acount?</p>
       </Form>
     </Card>
     </div>

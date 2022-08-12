@@ -51,7 +51,6 @@ const CreateUser = () => {
     dispatch( signUpThunk( data ) )
      navigate( -1 ) 
     
-    console.log(data)
   }
 
 

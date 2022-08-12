@@ -51,9 +51,8 @@ const Cart = ({show, handleClose, handleShow}) => {
         confirmButtonColor: '#d33',
         cancelButtonColor: '#50524f',
         confirmButtonText: 'Remove!',
-        footer: "You can't add it back",
-        footerColor: 'red',
-        toast: true
+        footer: " <p class='red'>  You can't add it back</p>",
+        toast: true,
       }).then((result) => {
         if (result.isConfirmed) {
           dispatch(removeCartProductThunk( id ))
@@ -86,7 +85,7 @@ const Cart = ({show, handleClose, handleShow}) => {
     <div>
       <Offcanvas show={show} onHide={handleClose} placement='end' >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Shopping cart</Offcanvas.Title>
+  <Offcanvas.Title>{  localStorage.getItem( "firstName" )+"'s Shopping cart"}</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <div className='buy' onClick={ buy } style={{display: 'inline-block'}}>
@@ -102,7 +101,7 @@ const Cart = ({show, handleClose, handleShow}) => {
                 <p onClick={ ()=> navigate(`/productDetail/${item.id}` )}>{item.title}   ${new Intl.NumberFormat().format(item.price)}</p>
                 <p>{item.productsInCart.quantity}</p>
                 <div className='buy' onClick={()=> retireProduct( item.id ) }>
-                  Put off
+                  Remove
                     </div>
                 
           

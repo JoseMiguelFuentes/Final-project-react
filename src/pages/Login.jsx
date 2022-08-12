@@ -19,9 +19,9 @@ const Login = () => {
   const submit =( data  )=>{
     axios.post( 'https://ecommerce-api-react.herokuapp.com/api/v1/users/login', data )
     .then( res => {
-      // console.log(res.data)
       localStorage.setItem( "token", res.data.data.token )
-      localStorage.setItem( "userName", res.data.data.user.firstName +' '+res.data.data.user.lastName )
+      localStorage.setItem( "firstName", res.data.data.user.firstName )
+      localStorage.setItem( "lastName", res.data.data.user.lastName )
       
       Navigate ('/')
       const Toast = Swal.mixin({

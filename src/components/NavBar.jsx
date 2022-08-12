@@ -31,11 +31,13 @@ const NavBar = () => {
   
   const logOut = ()=> {
      localStorage.setItem("token", "" )
-     localStorage.setItem("userName", "" )
+     localStorage.setItem("firstName", "" )
+     localStorage.setItem("lastName", "" )
      navigate("/login") 
     }
   const token = localStorage.getItem( "token" )
-  const userName = localStorage.getItem( "userName" )
+  const firstName = localStorage.getItem( "firstName" )
+  const lastName = localStorage.getItem( "lastName" )
   
     
 
@@ -44,7 +46,7 @@ const NavBar = () => {
     <div>
       <Navbar bg="light" expand="sm">
       <Container>
-        <Navbar.Brand href="/#/">{ userName ? 'Wellcome '+userName : 'My store'}</Navbar.Brand>
+        <Navbar.Brand href="/#/">{ firstName ? 'Wellcome '+firstName+' '+lastName : 'My store'}</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -61,7 +63,7 @@ const NavBar = () => {
               Cart
             </button>
 
-            <Nav.Link href="/#/">{ userName ? null : 'Sign Up'}</Nav.Link>
+            <Nav.Link href="/#/">{ firstName ? null : 'Sign Up'}</Nav.Link>
 
           </Nav>
         </Navbar.Collapse>

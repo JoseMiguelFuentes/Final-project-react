@@ -102,7 +102,7 @@ const ProductDetail = () => {
       }
       dispatch( addCartThunk( body ) )
       setQuantity(1)
-      alert( 'Sent to cart' )
+      
     }
        
   

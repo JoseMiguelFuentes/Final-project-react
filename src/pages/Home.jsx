@@ -65,8 +65,7 @@ const Home = () => {
         quantity: 1
       }
       dispatch( addCartThunk( body ) )
-      alert( 'Sent to cart' )
-    }
+      }
   
 
   

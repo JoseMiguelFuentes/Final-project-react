@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
@@ -16,7 +17,6 @@ const Login = () => {
 
 
   const submit =( data  )=>{
-    // console.log(data);
     axios.post( 'https://ecommerce-api-react.herokuapp.com/api/v1/users/login', data )
     .then( res => {
       // console.log(res.data)
@@ -24,10 +24,34 @@ const Login = () => {
       localStorage.setItem( "userName", res.data.data.user.firstName +' '+res.data.data.user.lastName )
       
       Navigate ('/')
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'Signed in successfully'
+      })
       })
       .catch((error) => {
         if (error.response?.status === 404) {
-          alert("Credenciales inválidas")
+          Swal.fire(
+            {
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              footer: 'Wrong email or password',
+              confirmButtonColor: '#50524f',
+              toast:true, 
+          })
         }
         console.error(error.response)
       })
@@ -35,6 +59,7 @@ const Login = () => {
           email: "joe@gmail.com",
           password: "fuentes123"
         })
+        
         
   }
   

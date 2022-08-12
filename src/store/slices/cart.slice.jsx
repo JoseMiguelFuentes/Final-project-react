@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { setIsLoading } from './isLoading.slice';
 import axios from 'axios'
 import getConfig from '../../utils/getConfig';
+import Swal from 'sweetalert2';
 
 export const cartSlice = createSlice({
     name: 'cart',
@@ -28,7 +29,33 @@ export const getCartThunk = ( ) => (dispatch) => {
 export const addCartThunk = (data) => (dispatch) => {
     // dispatch(setIsLoading(true));
     return axios.post( `https://ecommerce-api-react.herokuapp.com/api/v1/cart`, data, getConfig() )
-        .then(() => dispatch( getCartThunk() ))
+        .then((res) => {
+          if (res.status === 201) {
+            dispatch( getCartThunk() )
+            Swal.fire(
+              {title:'Ready!',
+              text:'Your product has been sent to cart.',
+              icon:'success',
+              confirmButtonColor: '#50524f',
+              toast:true, 
+            })
+          }
+        })
+        .catch( error => {
+          if (error.response.status === 400) {
+            dispatch( getCartThunk() )
+            Swal.fire(
+              {
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: 'You already added this product to the cart',
+                confirmButtonColor: '#50524f',
+                toast:true, 
+            })
+          }
+        })
+        
         // .finally(() => dispatch(setIsLoading(false)));
 }
 export const removeCartProductThunk = (id) => (dispatch) => {

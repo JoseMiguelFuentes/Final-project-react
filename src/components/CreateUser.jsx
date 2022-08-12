@@ -95,6 +95,7 @@ const CreateUser = () => {
               {...register('password')}
               required={true}
               minLength={8}
+              maxLength={8}
             />
 
           </InputGroup>
@@ -109,6 +110,7 @@ const CreateUser = () => {
             type='text'
             {...register('phone')}
             placeholder='10 characteres'
+            minLength={10}
             maxLength={10}
             required={true}
           />

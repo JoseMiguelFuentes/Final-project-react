@@ -44,7 +44,8 @@ const Cart = ({show, handleClose, handleShow}) => {
      
       Swal.fire({
         title: ` ${localStorage.getItem
-          ('userName')}`,
+          ('firstName')+' '+localStorage.getItem
+          ('lastName')}`,
         text: 'Do you really want to remove this product from the cart',
         icon: 'warning',
         showCancelButton: true,

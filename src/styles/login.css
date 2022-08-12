@@ -5,7 +5,11 @@
   margin-top: 30vh;
 }
 /* Create Users */
-
-#create-user:hover{
-  color: red;
+.create-user{
+  color: blue;
+  margin-top: 5px;
+  cursor: pointer
+}
+.create-user:hover{
+  color: rgb(190, 54, 0);
 }

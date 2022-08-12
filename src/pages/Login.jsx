@@ -14,6 +14,7 @@ const Login = () => {
 
   const { handleSubmit, register, reset} = useForm()
   let Navigate = useNavigate()
+  let [over, setOver]= useState(false)
 
 
   const submit =( data  )=>{
@@ -59,9 +60,18 @@ const Login = () => {
           email: "joe@gmail.com",
           password: "fuentes123"
         })
-        
-        
   }
+//   const [pStyle, setPStyle] = useState('')
+  
+// useEffect(()=>{
+//   if(over){
+//     setPStyle ( 'create-user')
+//   }
+//   else{
+//     setPStyle('')
+//   }
+// },[over])
+  
   
   
 
@@ -92,9 +102,9 @@ const Login = () => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
-        <p id='create-user' style={{color: 'blue', marginTop: '5px', cursor: 'pointer'}}
-        
-        onClick={()=>Navigate('/createUser')}
+        <p id='create-user' 
+        className='create-user'
+        onClick={()=>{Navigate('/createUser') }}
         >Don't have an acount?</p>
       </Form>
     </Card>

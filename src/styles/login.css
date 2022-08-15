@@ -7,8 +7,15 @@
 /* Create Users */
 .create-user{
   color: blue;
-  margin-top: 5px;
+  margin-top: 0;
   cursor: pointer
+
+}
+.noAccount{
+  margin-top: 5px;
+  color: rgb(35, 182, 21);
+  margin-top: 5px;
+  margin-bottom: 0;
 }
 .create-user:hover{
   color: rgb(190, 54, 0);

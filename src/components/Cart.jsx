@@ -8,16 +8,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { buyCartThunk, getCartThunk, removeCartProductThunk } from '../store/slices/cart.slice';
 
+
+
 const Cart = ({show, handleClose, handleShow}) => {
 
+  const lang = useSelector( state => state.language )
   const cartProducts = useSelector( state => state.cart )
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    
+
       dispatch(getCartThunk())
     
-  },[])
+  },[localStorage.getItem("token")])
   // console.log(cartProducts)
 
   const navigate = useNavigate()
@@ -46,20 +49,21 @@ const Cart = ({show, handleClose, handleShow}) => {
         title: ` ${localStorage.getItem
           ('firstName')+' '+localStorage.getItem
           ('lastName')}`,
-        text: 'Do you really want to remove this product from the cart',
+        text: lang?.removeMessage,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#50524f',
-        confirmButtonText: 'Remove!',
-        footer: " <p class='red'>  You can't add it back</p>",
+        cancelButtonText: lang?.removeCancel,
+        confirmButtonText: lang.remove,
+        footer: `<p class='red'>  ${lang.removeWarning}</p>`,
         toast: true,
       }).then((result) => {
         if (result.isConfirmed) {
           dispatch(removeCartProductThunk( id ))
           Swal.fire(
-            {title:'Removed!',
-            text:'Your product has been Removed.',
+            {title:lang.removed,
+            text: lang.productRemoved,
             icon:'success',
             confirmButtonColor: '#50524f',
             toast:true, 
@@ -71,8 +75,8 @@ const Cart = ({show, handleClose, handleShow}) => {
     const buy =()=>{
       dispatch(buyCartThunk( ))
       Swal.fire(
-        {title:'Ready!',
-        text:'Thanks for your purchase.',
+        {title: lang.ready,
+        text: lang.thanks,
         icon:'success',
         confirmButtonColor: '#50524f',
         toast:true, 
@@ -90,10 +94,10 @@ const Cart = ({show, handleClose, handleShow}) => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <div className='buy' onClick={ buy } style={{display: 'inline-block'}}>
-                            Buy
+          {lang?.buy}
             </div>
           <h4>Total: ${getTotal( cartProducts )}</h4>
-          <p>Quantity: ( {getQuantity( cartProducts )} )</p>
+          <p>{lang?.quantity}: ( {getQuantity( cartProducts )} )</p>
           
         
           {
@@ -102,7 +106,7 @@ const Cart = ({show, handleClose, handleShow}) => {
                 <p onClick={ ()=> navigate(`/productDetail/${item.id}` )}>{item.title}   ${new Intl.NumberFormat().format(item.price)}</p>
                 <p>{item.productsInCart.quantity}</p>
                 <div className='buy' onClick={()=> retireProduct( item.id ) }>
-                  Remove
+                  {lang?.remove}
                     </div>
                 
           

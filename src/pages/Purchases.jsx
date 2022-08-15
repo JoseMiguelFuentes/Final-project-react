@@ -91,7 +91,7 @@ const Purchases = () => {
       dispatch( getPurchasesThunk( ) )
     },[])
     // console.log(purchases)
-    
+    const lang = useSelector( state => state.language )
 
 
     
@@ -99,7 +99,7 @@ const Purchases = () => {
 
   return (
     <div style={{marginBottom: '40px'}}>
-      <h1>Shopping</h1>
+      <h1>{lang.purchases}</h1>
       
       {
         purchases?.map( item => (

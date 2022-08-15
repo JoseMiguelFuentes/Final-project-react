@@ -1,0 +1,78 @@
+
+
+{
+  "name": "english",
+  "nav.welcome": "Welcome",
+  "home": "Home",
+  "myStore": "My Store",
+  "price": "Price $",
+  "priceCard": "Price",
+  "allProducts": "All Products",
+  "purchases": "Purchases",
+  "cart": "Cart",
+  "addToCart": "Add to cart",
+  "description": "Description",
+  "similarProducts": "Maybe you might be interested",
+  "shoppingCart": "Shopping cart",
+  "shopping": "Shopping",
+  "buy": "Buy",
+  "remove": "Remove",
+  "removeMessage": "Do you really want to remove this product from the cart",
+  "removeButton": "Remove!",
+  "productRemoved": "Your product has been Removed.",
+  "removeCancel": "Cancel",
+  "removeWarning": "You can't add it back",
+  "removed": "Removed!",
+  "total": "Total $",
+  "subtotal": "Subtotal $",
+  "quantity": "Quantity",
+  "date": "{date}",
+  "search": "Search",
+  "searchProduct": "Search product",
+
+  "logIn": "Log-in",
+  "logInSuccess": "Signed in successfully",
+  "logOut": "Log-Out",
+  "logInErrorTitle": "Oops...",
+  "logInErrorText": "Something went wrong!",
+  "logInErrorFooter": "Wrong email or password",
+
+  "emailAddress": "Email address",
+  "enterEmail": "Enter email",
+  "neverShare": "We'll never share your email with anyone else.",
+  "password": "Password",
+  "singIn": "Sign in",
+  "singUp": "Sign Up",
+  "noAccount": "Don't have an acount?",
+  "createOne": "Create one!",
+  "createAccount": "Create account",
+  "firstName":"FirstName",
+  "lastName": "LastName",
+  "email": "Email",
+  "emailPlace": "example@xmail.com",
+  "phone": "Phone",
+  "characteres": "{ number },characteres",
+  "signedSuccessfully": "Signed in successfully",
+
+
+  "userCreated": "User created!",
+  "createTitle": "Well..",
+  "createFooter": "'Use your email and password to log in'",
+  "createErrorTitle": "Oops...",
+  "createErrorText":"Something went wrong!",
+  "createErrorFooter":"Maybe the user already exists",
+
+  
+  "ready": "All ready!",
+  "ProductSent":"Your product has been sent to cart.",
+  "ProductSentError":"Possibly the product had already been sent to cart.",
+  "thanks": "Thanks for buying"
+ 
+
+  
+  
+  
+
+
+
+}

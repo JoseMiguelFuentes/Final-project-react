@@ -5,8 +5,9 @@ import { useEffect } from 'react';
 import { Button, Card, Form, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux'
-import { signUpThunk } from '../store/slices/logIn.slice';
+import { useDispatch, useSelector } from 'react-redux'
+
+import Swal from 'sweetalert2';
 
 const CreateUser = () => {
 
@@ -14,32 +15,8 @@ const CreateUser = () => {
   const { handleSubmit, register, reset} = useForm( {} )
   const navigate = useNavigate()
   const dispatch = useDispatch()
-//   {
-//     "firstName": "Max",
-//     "lastName": "Rangel",
-//     "email": "max@gmail.com",
-//     "password": "pass1234",
-//     "phone": "1234567891",
-//     "role": "admin"
-// }
+  const lang = useSelector( state => state.language )
 
-// let initialData = {
-//   "firstName": "",
-//   "lastName": "",
-//   "email": "",
-//   "password": "",
-//   "phone": "",
-//   "role": "admin"
-// }
-  
-//    reset( {
-//   "firstName": "",
-//   "lastName": "",
-//   "email": "",
-//   "password": "",
-//   "phone": "",
-//   "role": "admin"
-// } )
 
 
 
@@ -47,46 +24,70 @@ const CreateUser = () => {
 
   const submit =(data)=>{
     data.role = "admin"
-    // axios.post( `https://ecommerce-api-react.herokuapp.com/api/v1/users`, data )
-    dispatch( signUpThunk( data ) )
-     navigate( -1 ) 
+    axios.post( `https://ecommerce-api-react.herokuapp.com/api/v1/users`, data )
+        .then((res) => {
+            if (res.status === 201 ) {
+                Swal.fire({
+                    icon: 'success',
+                    title: lang?.createTitle,
+                    text: lang?.userCreated,
+                    footer: lang?.createFooter
+                })
+                navigate( -1 )
+            }
+        })
+        
+        .catch((error) => {
+            if (error.response?.status === 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: lang.createErrorTitle,
+                    text: lang.createErrorText,
+                    footer: lang.createErrorFooter,
+                  })
+            }
+          })
+      
     
   }
 
 
   return (
     <div>
-      <Card style={{ width: '40%', padding: '1%' }} className='card-login'>
+      <Card style={{ width: '45%', padding: '1%' }} className='card-login'>
       <Form onSubmit={handleSubmit(submit)}>
         <InputGroup size="sm" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-sm">FirstName</InputGroup.Text>
+          <InputGroup.Text id="inputGroup-sizing-sm">{lang?.firstName}</InputGroup.Text>
           <Form.Control
             aria-label="firstName"
             aria-describedby="inputGroup-sizing-sm"
             {...register('firstName')}
             required={true}
+            placeholder={lang?.firstName}
           />
           
-          <InputGroup.Text id="inputGroup-sizing-sm">LastName</InputGroup.Text>
+          <InputGroup.Text id="inputGroup-sizing-sm">{lang.lastName}</InputGroup.Text>
           <Form.Control
             aria-label="lastName"
             aria-describedby="inputGroup-sizing-sm"
             {...register('lastName')}
             required={true}
+            placeholder={lang?.FormlastName}
           />
         </InputGroup>
 
         <InputGroup size="sm" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-sm">Email</InputGroup.Text>
+          <InputGroup.Text id="inputGroup-sizing-sm">{lang?.email}</InputGroup.Text>
           <Form.Control
             aria-label="email"
             aria-describedby="inputGroup-sizing-sm"
             type='email'
             {...register('email')}
             required={true}
+            placeholder={lang?.emailPlace}
           />
 
-          <InputGroup.Text id="inputGroup-sizing-sm">Password</InputGroup.Text>
+          <InputGroup.Text id="inputGroup-sizing-sm">{lang?.password}</InputGroup.Text>
             <Form.Control
               aria-label="password"
               aria-describedby="inputGroup-sizing-sm"
@@ -102,7 +103,7 @@ const CreateUser = () => {
           
 
           <InputGroup size="sm" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-sm">Phone</InputGroup.Text>
+          <InputGroup.Text id="inputGroup-sizing-sm">{lang?.phone}</InputGroup.Text>
           <Form.Control
             aria-label="email"
             aria-describedby="inputGroup-sizing-sm"
@@ -115,7 +116,7 @@ const CreateUser = () => {
           />
 
           </InputGroup>
-          <Button type='submit' >Create account</Button>
+  <Button type='submit' >{lang?.createAccount}</Button>
         </Form>
     </Card>
     </div>
@@ -123,3 +124,5 @@ const CreateUser = () => {
 };
 
 export default CreateUser;
+
+

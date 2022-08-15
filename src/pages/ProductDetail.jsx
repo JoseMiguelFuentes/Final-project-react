@@ -1,5 +1,4 @@
 
-import React from 'react';
 
 
 import Button from 'react-bootstrap/Button';
@@ -21,26 +20,30 @@ import right from '../assets/images/rightCoin.png'
 import Fixed from '../assets/images/fix.png'
 import Auto from '../assets/images/auto.gif'
 
-import Accordion from 'react-bootstrap/Accordion';
 import { addCartThunk } from '../store/slices/cart.slice';
 import { setProductsThunk } from '../store/slices/products.slice';
+import Swal from 'sweetalert2';
+
 
 const ProductDetail = () => {
 
   const currentLocation = useLocation()
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
   const Navigate = useNavigate()
-  const products = useSelector( state => state.products)
+  
+  
   const {id} = useParams()
   const dispatch = useDispatch()
   const [ currentProduct, setCurrentProduct ] = useState( {} )
-  const [ autoSwitch, setAutoSwitch ] = useState( true )
+  const [ autoSwitch, setAutoSwitch ] = useState( false )
   const [ productImgs, setProductImgs ] = useState( [] )
   const [ suggestedProduct, setSuggestedProduct ] = useState( [] )
   const [ imgIndex, setImgIndex ] = useState( 0 )
   const [ quantity, setQuantity ] = useState( 1 )
-  Number( id )   
+    
 
+  const lang = useSelector( state => state.language )
+  const products = useSelector( state => state.products )
   
   
   useEffect(()=>{
@@ -64,7 +67,7 @@ const ProductDetail = () => {
   },[imgIndex, autoSwitch])
   
   useEffect(()=>{
-      const product = products.find( product => product.id ==  id  )
+      const product = products.find( product => product.id ==   Number( id )  )
       setCurrentProduct( product )
       setProductImgs( product?.productImgs )
       
@@ -100,12 +103,18 @@ const ProductDetail = () => {
         id: currentProduct.id,
         quantity
       }
-      dispatch( addCartThunk( body ) )
+      dispatch( addCartThunk( body, lang.createErrorTitle, lang.createErrorText, lang.ProductSentError ) )
       setQuantity(1)
+      Swal.fire(
+        {title: lang.ready,
+        text: lang.ProductSent,
+        icon:'success',
+        confirmButtonColor: '#50524f',
+        toast:true, 
+      })
       
     }
        
-  
   
   return (
     <div>
@@ -147,7 +156,7 @@ const ProductDetail = () => {
                   <div body style={{ width: '60%', marginRight: 'auto', marginLeft: 'auto', paddingTop: '1%' }}>
                     <p>{currentProduct?.description}</p>
                     <div className='quantity'>
-                      <div className='quantity-name'>Quantity</div>
+                      <div className='quantity-name'>{lang.quantity}</div>
                       <div className='quantity-data'>
 
                         <button className='turn-quantity'
@@ -165,12 +174,12 @@ const ProductDetail = () => {
                       </div>
                     </div>
                     <div className='buy' onClick={ sendToCart }>
-                        Add to cart
+                        {lang.addToCart}
                     </div>
 
                     <div className='box-price'>
                       <div className='price'>
-                          Price ${currentProduct?.price} / Total ${quantity * currentProduct?.price}
+                        {lang.price}{currentProduct?.price} / {lang.total}{quantity * currentProduct?.price}
                       </div>
                     </div>
 
@@ -183,7 +192,7 @@ const ProductDetail = () => {
           </article>
         </div>
       <>
-        <h3 style={{margin: '50px auto'}}>Maybe you might be interested</h3>
+        <h3 style={{margin: '50px auto'}}>{lang.similarProducts}</h3>
       <div className='product_card-box'>
         
         {
@@ -201,12 +210,9 @@ const ProductDetail = () => {
               <div className='product-data'>
                 <h4>{item.title}</h4>
             
-              <p>Price: <br />${item.price}</p>
+                <p>{lang?.priceCard}: ${new Intl.NumberFormat().format(item.price)}</p>
               </div>
 
-              <div className='cart_box' onClick={()=>sendToCart(item)}><img src={cart} alt="" /></div>
-          
-        
           </article>
           ))
         } 

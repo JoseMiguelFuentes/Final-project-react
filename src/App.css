@@ -23,6 +23,16 @@
   border: none;
   font-weight: 700;
 }
+.flag{
+  background: transparent;
+  border: none;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+}
 
 
 

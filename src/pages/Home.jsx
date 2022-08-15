@@ -37,11 +37,11 @@ const Home = () => {
   const [ categories, setCategories ] = useState([])
 
 
-
   const [ filterValue, setFilterValue ] = useState('')
   
 
   let navigate = useNavigate()
+  const lang = useSelector( state => state.language )
 
   const dispatch = useDispatch()
   const products = useSelector ( state => state.products )
@@ -53,7 +53,7 @@ const Home = () => {
         setCategories( res.data.data.categories )
         })
 
-  },[])
+  },[lang])
 
     const filtering =( e )=> {
       dispatch(filterCategoryThunk( e.target.value ))
@@ -76,7 +76,7 @@ const Home = () => {
           <div className='form'>
             <InputGroup className="home_input" onChange={ event => setFilterValue( event.target.value )}>
               <Form.Control
-                placeholder="Search product"
+                placeholder={lang?.searchProduct}
                 aria-label="Recipient's username"
                 aria-describedby="basic-addon2"
               />
@@ -84,13 +84,13 @@ const Home = () => {
               id="button-addon2"
               onClick={ ()=> dispatch( filterProductsThunk ( filterValue )) }
               >
-                Search
+                {lang?.search}
               </Button>
             </InputGroup>
           
             <Form.Select onChange={ filtering } className='select'>
               <option value={''}
-              >All Products</option>
+              >{lang?.allProducts}</option>
               {
                 categories.map( item => 
                   (
@@ -123,13 +123,9 @@ const Home = () => {
                     <div className='product-data'>
                       <h4>{item.title}</h4>
                   
-                    <p>Price: <br />${item.price}</p>
+                      <p>{lang.priceCard}: ${new Intl.NumberFormat().format(item.price)}</p>
                     </div>
 
-                    <div className='cart_box'
-                      onClick={()=>sendToCart(item)}
-                    ><img src={cart} alt="cart" /></div>
-                
               
                 </article>
                 ))

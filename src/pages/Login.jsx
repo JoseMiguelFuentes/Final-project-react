@@ -8,13 +8,17 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Swal from 'sweetalert2';
+import { useSelector } from 'react-redux';
+
+//Translation
+
 
 
 const Login = () => {
 
   const { handleSubmit, register, reset} = useForm()
   let Navigate = useNavigate()
-  let [over, setOver]= useState(false)
+  const lang = useSelector( state => state.language )
 
 
   const submit =( data  )=>{
@@ -29,17 +33,18 @@ const Login = () => {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000,
+        timer: 6000,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.addEventListener('mouseenter', Swal.stopTimer)
           toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
       })
-      
+      let signInSuccess = localStorage.getItem( "firstName")+' '+ lang.logInSuccess
       Toast.fire({
         icon: 'success',
-        title: 'Signed in successfully'
+        title: signInSuccess
+        
       })
       })
       .catch((error) => {
@@ -47,9 +52,9 @@ const Login = () => {
           Swal.fire(
             {
               icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-              footer: 'Wrong email or password',
+              title: lang.logInErrorTitle,
+              text: lang.logInErrorText,
+              footer: lang.logInErrorFooter,
               confirmButtonColor: '#50524f',
               toast:true, 
           })
@@ -61,16 +66,7 @@ const Login = () => {
           password: "fuentes123"
         })
   }
-//   const [pStyle, setPStyle] = useState('')
-  
-// useEffect(()=>{
-//   if(over){
-//     setPStyle ( 'create-user')
-//   }
-//   else{
-//     setPStyle('')
-//   }
-// },[over])
+
   
   
   
@@ -83,29 +79,36 @@ const Login = () => {
       <Card style={{ width: '18rem' }} className='card-login'>
         <Form onSubmit={ handleSubmit ( submit )}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" 
+          <Form.Label>{lang.emailAddress}</Form.Label>
+          <Form.Control type="email" placeholder={lang?.enterEmail} 
           { ...register('email') }
           />
           <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
+            {lang.neverShare}
           </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password"
+          <Form.Label>{lang?.password}</Form.Label>
+          <Form.Control type="password" placeholder={lang?.password}
           { ...register('password') }
           />
         </Form.Group>
         
         <Button variant="primary" type="submit">
-          Submit
+          {lang?.singIn}
         </Button>
+
+        <p id='create-user' 
+        className='noAccount'
+        >{lang?.noAccount}</p>
+
         <p id='create-user' 
         className='create-user'
         onClick={()=>{Navigate('/createUser') }}
-        >Don't have an acount?</p>
+        >{lang?.createOne}</p>
+
+
       </Form>
     </Card>
     </div>

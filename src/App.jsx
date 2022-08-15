@@ -4,9 +4,11 @@
 
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import 'bootswatch/dist/sketchy/bootstrap.min.css' 
+import 'bootswatch/dist/sketchy/bootstrap.min.css'
 import './App.css'
-
+//Translation
+import English from './languages/en-US.json'
+import Spanish from './languages/es-MX.json'
 
 
 
@@ -18,33 +20,35 @@ import { NavBar, LoadingScreen } from './components'
 import CreateUser from './components/CreateUser'
 
 function App() {
-  const loading = useSelector( state => state.loading)
+  const loading = useSelector(state => state.loading)
   
+
+
+
+  
+
+
   return (
-    <div className="App">
-      
-      {
-        loading && <LoadingScreen/>
-      }
-        
-      <HashRouter>
-        <NavBar/>
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/productDetail/:id" element={<ProductDetail />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/createUser" element={<CreateUser />} />
-            
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/purchases" element={<Purchases />} />
-          </Route>
-          
-        </Routes>
-    </HashRouter>
+      <div className="App">
+        {
+          loading && <LoadingScreen />
+        }
 
+        <HashRouter>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/productDetail/:id" element={<ProductDetail />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/createUser" element={<CreateUser />} />
 
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/purchases" element={<Purchases />} />
+            </Route>
 
-    </div>
+          </Routes>
+        </HashRouter>
+      </div>
   )
 }
 

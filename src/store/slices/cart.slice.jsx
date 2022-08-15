@@ -26,30 +26,23 @@ export const getCartThunk = ( ) => (dispatch) => {
       .finally(() => dispatch(setIsLoading(false)))
 }
 
-export const addCartThunk = (data) => (dispatch) => {
+export const addCartThunk = (data, titleE, textE, footerE) => (dispatch) => {
     // dispatch(setIsLoading(true));
     return axios.post( `https://ecommerce-api-react.herokuapp.com/api/v1/cart`, data, getConfig() )
         .then((res) => {
           if (res.status === 201) {
             dispatch( getCartThunk() )
-            Swal.fire(
-              {title:'Ready!',
-              text:'Your product has been sent to cart.',
-              icon:'success',
-              confirmButtonColor: '#50524f',
-              toast:true, 
-            })
+             
           }
         })
         .catch( error => {
           if (error.response.status === 400) {
-            dispatch( getCartThunk() )
             Swal.fire(
               {
                 icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-                footer: 'You already added this product to the cart',
+                title: titleE,
+                text: textE,
+                footer: footerE,
                 confirmButtonColor: '#50524f',
                 toast:true, 
             })

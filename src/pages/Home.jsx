@@ -103,8 +103,6 @@ const Home = () => {
           </div>
             
           
-                  
-               
             
             <div className="g-4 product_card-box">
             

@@ -21,10 +21,7 @@ export const languageSlice = createSlice(
 export const { setLanguage } = languageSlice.actions;
 
 export const setlanguageThunk = ( data ) => (dispatch) => {
-    // dispatch(setIsLoading(true));
     return (() => dispatch( setLanguage ( data )))
-        // .then(() => dispatch(/* action */))
-        // .finally(() => dispatch(setIsLoading(false)));
 }
 
 export default languageSlice.reducer;

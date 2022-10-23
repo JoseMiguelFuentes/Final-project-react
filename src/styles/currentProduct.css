@@ -1,0 +1,147 @@
+
+
+.galeryView{
+  width: 60%;
+  height: 20%;
+  display: none;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-top: 15px;
+}
+.galeryItem{
+  height: 70px;
+  width: 70px;
+  border-radius: 10px;
+  padding: 3%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.imgSelected{
+  border:  2px solid rgb(216, 64, 22);
+}
+.galeryItem > img{
+  max-height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+
+.mother{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5%;
+  position: relative;
+  height: auto;
+  padding-bottom: 30px;
+}
+
+
+.image_content{
+  margin: 0 auto;
+  width: 60%;
+  height: calc(15px + 40vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  position: relative;
+  padding: 1%;
+}
+.image_content h2{
+  font-size: calc(5px + 2vw);
+}
+
+.main {
+  display: block;
+  height: 80%;
+  width: 80%;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* buttons */
+.left{
+  display: block;
+  position: absolute;
+  cursor: pointer;
+  width: calc(1px + 6vw);
+  height: calc(1px + 6vw);
+  border-radius: 50%;
+  left: -5vw;
+  top: 50%;
+}
+.left:hover,
+.right:hover{
+  transform: scale(1.4);
+}
+.left img,
+.right img{
+  width: 100%;
+  height: 100%;
+}
+.right{
+  position: absolute;
+  right: -5vw;
+  cursor: pointer;
+  border-radius: 50%;
+  top: 50%;
+  width: calc(1px + 6vw);
+  height: calc(1px + 6vw);
+}
+
+.auto{
+  position: absolute;
+  right: 14vw;
+  cursor: pointer;
+  border-radius: 50%;
+  top: -10px;
+  width: 20px;
+  height: 25px;
+  box-shadow: 0px 0px 6px 3px rgb(0, 0, 0);
+  padding: 0;
+}
+
+.auto-contain{
+  width: 100%;
+  height: 100%;
+}
+.auto-contain img{
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+}
+
+/*Product description*/
+.description__btn{
+  color: rgb(255, 255, 255);
+  background-color: black;
+  border-radius: 35%;
+  border-color: rgb(216, 64, 22);
+}
+.description__btn:hover{
+  border-color: chartreuse;
+  /* color: black; */
+}
+
+.description__btn:focus {
+  color: var(--bs-btn-hover-color);
+  background-color: var(--bs-btn-hover-bg);
+  border-color: var(--bs-btn-hover-border-color);
+  outline: 0;
+  box-shadow: var(--bs-btn-focus-box-shadow);
+}
+
+
+
+@media screen and (min-width: 700px) {
+  .galeryView{
+    display: flex;
+  }
+  
+}
